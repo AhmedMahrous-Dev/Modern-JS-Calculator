@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Calculator</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <div class="calc">
+        <div class="screen-container">
+            <div class="history" id="history"></div>
+            <div class="screen" id="display">0</div>
+        </div>
+        
+        <div class="buttons">
+            <!-- الـ Logic الجديد: DEL بتمسح حرف و AC بتمسح الكل -->
+            <button onclick="deleteLast()" class="btn-del">DEL</button>
+            <button onclick="append('/')" class="btn-op">÷</button>
+            <button onclick="append('*')" class="btn-op">×</button>
+            <button onclick="clearAll()" class="btn-clear">AC</button>
+            
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('-')" class="btn-op">−</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('+')" class="btn-op">+</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="calculate()" class="btn-eq">=</button>
+
+            <button onclick="append('0')" class="zero">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="toggleSign()">±</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
