@@ -7,25 +7,34 @@ function updateDisplay() {
 }
 
 function append(val) {
-    // منع تكرار النقطة العشرية
-    if (val === '.' && currentInput.includes('.')) return;
-    
+    if (val === '.') {
+        let parts = currentInput.split(/[\+\-\×\÷\*\/]/);
+        let lastNumber = parts[parts.length - 1];
+
+        if (lastNumber.includes('.')) return;
+    }
+
     if (currentInput === "0" || currentInput === "Error") {
-        currentInput = val;
+        if (val === '.') {
+            currentInput = "0.";
+        } else if (['+', '-', '×', '÷'].includes(val)) {
+            currentInput = "0" + val; 
+        } else {
+            currentInput = val; 
+        }
     } else {
         currentInput += val;
     }
+
     updateDisplay();
 }
 
-// مسح كل شيء (AC)
 function clearAll() {
     currentInput = "0";
     historyDiv.innerText = "";
     updateDisplay();
 }
 
-// مسح آخر خانة فقط (DEL)
 function deleteLast() {
     if (currentInput === "Error" || currentInput.length <= 1) {
         currentInput = "0";
@@ -35,30 +44,35 @@ function deleteLast() {
     updateDisplay();
 }
 
-function toggleSign() {
-    if (currentInput !== "0" && currentInput !== "Error") {
-        currentInput = currentInput.startsWith('-') ? currentInput.slice(1) : '-' + currentInput;
-        updateDisplay();
-    }
-}
-
 function calculate() {
     try {
         if (currentInput === "0") return;
+
+        let calculation = currentInput.replace(/×/g, '*').replace(/÷/g, '/');
         
-        let expression = currentInput;
-        let result = eval(expression);
+        let result = eval(calculation);
         
-        // التعامل مع الأرقام العشرية الطويلة
         if (!Number.isInteger(result)) {
             result = Math.round(result * 100000000) / 100000000;
         }
         
-        historyDiv.innerText = expression + " =";
+        historyDiv.innerText = currentInput + " =";
         currentInput = result.toString();
         updateDisplay();
     } catch (e) {
         currentInput = "Error";
+        updateDisplay();
+    }
+}
+
+function toggleSign() {
+    if (currentInput !== "0" && currentInput !== "Error") {
+        
+        if (currentInput.startsWith('-')) {
+            currentInput = currentInput.slice(1);
+        } else {
+            currentInput = '-' + currentInput;
+        }
         updateDisplay();
     }
 }

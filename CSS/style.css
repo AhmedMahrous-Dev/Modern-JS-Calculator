@@ -41,7 +41,6 @@ body {
     color: #fff; 
     font-size: 2.5rem; 
     font-weight: 300;
-    word-break: break-all;
 }
 
 .buttons { 
@@ -68,7 +67,6 @@ button:hover {
 
 .btn-op { 
     color: #ff9f0a; 
-    font-size: 1.5rem;
 }
 
 .btn-eq { 
@@ -79,18 +77,12 @@ button:hover {
     font-size: 1.8rem;
 }
 
-.btn-eq:hover {
-    background: #ffb340;
-}
-
 .btn-del { 
     color: #0a84ff; 
-    font-weight: bold;
 }
 
 .btn-clear { 
     color: #ff3b30; 
-    font-weight: bold;
 }
 
 .zero { 
